@@ -1,0 +1,735 @@
+/* __________________reset_and_base_style_________________________ */
+html {
+box-sizing: border-box; /*это свойтво делает так чтоб весть контент будети умещатся в свой контейнер с указанными значениями и не увелитчит его размеры при наполнение border  or padding его */
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+/* важная запись нужна всегда  в начали css doc.
+html {
+box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+} */
+
+body {  /*тут чел в видео ебанулся ну как он это объясняет он посмотрел весь макет и бнаружил что весь текс идет размером в 16px  ток разница в жирности текста и та как мы будем менять только жирность текста а весь остальной текст останить тся с значанием как в боду*/
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Inter", sans-serif; /* ВОПЕРВЫХ НУЖНО ПОДКЛЮЧИТЬ ШРИВТЫ В CSS ВО ВТОРЫХ УКАЗЫВАЕМ ПОСЛЕДОВАТЕЛЬНОСТЬ ТО ЧТО СТОИТ В НАЧАЛЕ ТОТ ШТРИФТИ БУДЕТ ПРОГРУЖАТСЯ ПЕРВЫМ*/
+    line-height: 1.3;
+}
+
+
+ul {
+    list-style: none; /*сбрость стилей списка по типу точек  и тд*/
+}
+
+a {
+   text-decoration: none; /*убирает нижнее подчеркивание */
+    color: inherit; /* наследуют цвет от родителя*/
+}
+
+.wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.container {
+    /*можно поставить на старте для того чтобы было видно разметку и выполняемую работу background-color: #ccc; */
+    background-image: url("");
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0 10px; /*
+    БАЗА ЗАПОМНИ
+    РЕШЕНИЕ:сложить отступы по бокам и добавить их к ширине в даной ситуаци это 10px слева и права что равно 20px суммарно тк ширина у нас должна  быть1200px а стала 1180px кароче просто сложи отступы по бокам и добавь к изночальной ширине там не 1200px а 1220px  ;
+    Делаем внутринние отступы чтобы контейнер не прилепал; после этой записи изменилась ширина самого блока с 1200px до 1180px так как были заданы отступы слева и справа по 10px  они были сделаланы для того чтобы на мобильных устройствах или на телефонах контент не прижимался к краям мы резервируем эти 10 px*/
+}
+
+.section-title {
+    margin: 0 0 50px 0;
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* ___________________Root-Element_______________________________ */
+:root {
+    --black:#151515;
+    --blue:#0066ff;
+    --white:#ffffff;
+    --grey:#e8e8e8;
+
+}
+/* ________________Content____________________________- */
+/* _________________________Header-Start___________________________ */
+
+.header {
+    background-color:var(--black); 
+}
+
+.header-main {
+    background-color: transparent;
+    /* мы использовали этот класс исключительно для Index.html так как в остальных все схожее только в главном header есть отличительные черты  */
+    position: absolute;
+     /*все элементы с position absolute     сечас отсчитывают твои отступыот верха страници не смотря на свой zindex  */
+    z-index: 10;
+    /* подниамем header main */
+    /* растягиваем */
+    left: 0;
+    right: 0;
+}
+
+
+.header__inner {
+    padding: 40px 0 40px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.menu__list {
+    display: flex;
+}
+
+.menu__list-item:not(:last-child) {
+    margin: 0 35px 0 0;
+}
+
+.menu__list-link {
+    color: var(--white);
+    text-transform: uppercase; /*так как тектс в сыллках изначально был всеми заглавными буквами мы задаем это свойтво навсякий случай чтоб закрепить */
+    font-weight: 700;
+}
+
+.menu__list-link--active {
+    color: var(--blue);
+    /* это нужно подключить в разные HTML страници для того чтобы когда мы переключались было видно какая секция активна  */
+}
+/*_________________________Header-End___________________________ */
+
+/* ___________________Main-Start__________________________________ */
+
+
+.main {
+    flex-grow: 1;
+}
+
+.top {
+    color: var(--white);
+    text-align: center;
+    padding: 250px 0 50px 0;
+    position: absolute;
+         /*все элементы с position absolute     сечас отсчитывают твои отступыот верха страници не смотря на свой zindex  */
+    z-index: 5;
+    /* все сплющело и header и top  */
+    /* растягиваем */
+    left: 0;
+    right:0;
+    /* дублируем в header main */
+}
+
+.title {   
+    font-size: 96px;
+    font-weight: 700;
+    margin: 0 0 30px 0;
+}
+
+.top__link {
+    /* ссылка кнопка */
+    display: inline-block;
+    max-width: 430px;
+    width: 100%;
+    /*  в случаи если max-width не применилась можно использовать width:100%; чтобы все сработало */
+    background-color: var(--black);
+    padding: 23px;
+    /* почему мы указале padding:23px; а не padding:23px 113px 23px 113px; тк мы незнаем какого размера могут добавить контент а так мы зарезирвировали место чтобы при добавлении контента кнопка не растенулась хуй пойми как и просто компенсировали это шириной сделав резервный паддинг на случай увеличения контента */
+    text-transform: uppercase;
+    /*text-transform: uppercase; почему  тк у нас все буквы в кнопке заглавными на всякий случай мы добавили это сваойство*/
+    font-size: 36px;
+    font-weight: 700;
+    
+
+}
+
+/* _________________Slider_stat____________________ */
+.swiper-slide {
+    /* улучшаем картинку - background-repeat:no-repeat; чтобы она не повторялась 
+    background-position: center center; центрируем изображение 
+    background-size:cover; чтобы она заполняла пространство растягивалась если необходимо */
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+}
+
+
+
+
+/* swiper-wrapper не сработало затемнение картинки т как очень много вложенного в этоот силектор и бля таго чтобы упростить жизнь мы просто обращаемся не посредственно к классу swiper через псевдоэлемент ::after тем самы усиливая свое обращение   */
+
+.swiper::after {
+    content: ""; 
+    /* необходимо задават контент для того чтобы превдоэлемент сработал также не забыть указать запятые " " */
+    position: absolute;
+    /* необходимо спозиционировать чтобы растянуть полотно на всю ширину */
+    z-index: 5;
+    /* задаем zindex для того чтобы вывессти полотно вперед */
+    background-color: rgba(21, 21, 21, 0.3);
+    /* растягиваем полотно на всю ширину */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+/* .swiper-wrapper {
+    background-color:rgba(21, 21, 21, .3); */
+     /* изначально было background-color:#151515; и opacity:0.3;
+     но так как opacity влияет на весь блок а rgba именно 'A' альфа канал только на прозрачность цвета в devtools мы нашли rgba в вкладке computed очень важная вкладка мы выбрали элемент с этим цветом и проинспектировали его после заши в вкладку computed */
+
+/* для кастомизации булетов пагиниции мы заходим в dev tools поле  ищем пагинацию сморим названия класа переносим их в CSS после кастомизируем забирам сам булет и активныцй буллет  */
+.swiper-pagination-bullet {
+    width: 120px;
+    height: 3px;
+    background-color: var(--black);
+    border-radius: 0;
+    opacity: 1;
+}
+
+/* это мы сделали для того чтобы перебить базовые настройки слайдера с буллетами мы нашл это в devtools также мы могли ипоользовать !important только для swiper-pagination-bullet но так как м перебили это колочичеством селектроов то уже нет смысла   */
+
+/* .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet, легка усовершенствование сокращение кода */
+.swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet:not(:last-child) {
+    margin: 0 30px 0 0;
+}
+
+.swiper-pagination-bullet-active{
+    height: 6px;
+    background-color: var(--white);
+}
+
+
+/* .swiper-horizontal>.swiper-pagination-bullets, также легкое усовершенствование далее работа с оттупом с низу также ищем элемент в devtools  */
+.swiper-pagination-bullets.swiper-pagination-horizontal
+/* .swiper-pagination-custom, .swiper-pagination-fraction 
+также не забывай читать обозначеня классов и строить логическую цепочку что за ячем идет таким образом можно убрать лишние строчки*/
+{
+    bottom: 40px;
+}
+
+
+/* _________________Slider_end____________________ */
+
+
+/* _________Strat_Block_Why-Lease_______ */
+
+.why-lease {
+    padding: 150px 0 150px 0;
+}
+
+.why-lease__list {
+    /* для лучшего варианта адаптации мы будем использовать display:grid; потому-что когда мы букдем одаптировать в медиа запросах блоки будут смещатся 
+      */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    text-align: center;
+}
+
+.why-lease__item-img {
+    margin: 0 0 30px 0;
+}
+
+.why-lease__item-title {
+    margin: 0 0 30px 0;
+    font-size: 24px;
+    font-weight: 700;
+
+}
+
+.why-lease__item-text {
+    text-align: left;
+}
+
+/* _________End_Block_Why-Lease_______ */
+
+
+
+
+/* ___________Start_Block_How-Dose________ */
+
+.how-does {
+    padding: 0 0 150px 0;
+}
+
+.how-does__inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.how-does__title {
+    font-size: 24px;
+    font-weight: 700;
+    padding: 50px 0 0 0;
+}
+
+.how-dose__list {
+    padding: 50px 0 70px 0;
+    counter-reset: myCounter;
+    /* задаем название для того чтобы обратится к списку */
+}
+
+/*     
+counter-reset: myCounter;
+
+.how-dose__item::before {
+    counter-increment: myCounter;
+    content:counter(myCounter) ;
+}
+ обращаемся непосредственно к <li> элементу с псевдокласом ::before 
+
+
+благодоря этому ы смогли достучатся до наших номеров в <Ol> и после стилизовать их
+ */
+
+.how-dose__item {
+    list-style-type: none; 
+    /* убираем изначальную нумерацию
+    чтобы сделат свою */
+    width: 270px;
+    /* задае фиксированную ширину */
+    position: relative;
+    /* позиционируем для дальнешего перемещения */
+    /* margin-left: auto; */
+    box-sizing: content-box;
+    /* задем content-box потому что весь текс разехался */
+    padding: 19px 0 19px 240px;
+    /* отступы по макету */
+    min-height: 63px;
+    /* для правильной визуализации и возможностью дополнения */
+}
+
+.how-dose__item +.how-dose__item {
+    margin: 40px 0 0 0;
+    /* класика смежныжные селектор задает
+    это свойтво всем элементам кроме первого но только соседу */
+}
+
+.how-dose__item::before {
+    counter-increment: myCounter;
+    /* подключаем обращение к списку по названному имени */
+    content:counter(myCounter) ;
+    /* создаем контентную область */
+    display: flex ;
+    /* для гобкости */
+    align-items: center;
+    /* центрируем */
+    justify-content: center;
+     /*центрируем  */
+    background-color:var(--blue);
+    /* задаем цвет фона */
+    font-size: 48px;
+    /* размер цифры */
+    font-weight: 700;
+    /* жирность цифры */
+    width: 100px;
+    /* ширина области которую занимает эта часть */
+    height: 100px;
+    /* высота области которая занимает эта часть по макету */
+    border-radius: 50%;
+    /* создаем круг закругляю бордер */
+    color: var(--white);
+    /* цвет самой цифры */
+    position: absolute;
+    /* для позиционирования относительно контейнера */
+    left: 0;
+    /* прижимаем влево */
+    top: 0;
+    /* прижимаем к верху */
+}
+
+/* ___________End_Block_How-Dose________ */
+
+
+
+
+/* _____________Section-Video-start_____________ */
+
+.video {
+    padding-bottom: 150px;
+}
+
+.video__titile {
+    margin-bottom: 20px;
+}
+
+.video__text {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.video__content {
+    margin: 0 auto;
+    display: block;
+}
+
+/* ___________Section-Video -end________________ */
+
+/* _____________Important-thing-start___________ */
+
+.important {
+    padding-bottom: 150px;
+}
+
+.important__title {
+    margin-bottom: 20px;
+}
+
+.important__text {
+    max-width: 580px;
+    margin: 0 auto 50px;
+}
+
+
+
+.important__list {
+    display: grid;
+    grid-template-columns:repeat(4, 1fr) ;
+    gap: 40px;
+}
+
+.important__item-text {
+    padding-top: 20px;
+}
+
+
+/* _____________Important-thing-end___________ */
+
+
+/* ___________________Main-End__________________________________ */
+/* ___________________Footer-Start__________________________________ */
+.footer {
+    background-color: var(--black);
+    padding: 50px 0 32px 0;
+    color: var(--white);
+}
+/* .container {
+} */
+.footer__menu {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 0 50px 0;
+}
+.footer__menu-list {
+    max-width: 250px;
+    /* здаем нашим <Ul> ограничивающею ширину в 250px  для того если будет задаватся текст чтобы наши списки не уехали */
+}
+.footer__menu-item + .footer__menu-item {
+    /* что означает селектор "+" зная что сайт считывается Html с верху в низ то {плюс} функция с читает так применить стили к соседу  почитай про комбинированные селекторы это Смежный комбинатор  */
+    padding: 20px 0 0 0;
+}
+.footer__menu-title {  
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.21;
+    text-align: center;
+    padding: 0 0 20px 0;
+}
+.footer__menu-link {
+}
+.app {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 0 0 50px 0;
+}
+.app__item {
+}
+.app__item-link {
+}
+.app__item-img {
+}
+.footer__copy {
+    max-width: 806px;
+    margin: 0 auto 30px;
+    text-align: center;
+}
+
+.phone__link {
+    text-decoration-line: underline ;
+}
+
+.footer__copy-text {
+}
+.copy__nav {
+}
+.copy__nav-list {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+.copy__nav-item {
+}
+.copy__nav-link {
+}
+/* ___________________Footer-End__________________________________ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* _________________Contats-us-start___________________ */
+
+.contacts {
+    padding: 100px 0 150px;    
+}
+
+.contacts__title {
+    margin-bottom: 20px;
+}
+
+.contacts__text {
+    text-align: center;
+    font-weight: 700;
+    font-size: 24px;    
+    margin-bottom: 50px;
+    padding: 0 100px;
+    
+}
+
+.form {
+    max-width: 580px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /* чтобы они могли переноситься елс и мало место пишим flex-wrap:wrap; */
+}
+
+.form__textarea {
+    width: 100%;
+    resize: none;
+    /* resize:none; делает так чтобы текс ариа не увеличивалась и ее небыло возможно растянуть
+     */
+    padding: 28px 20px;
+    height: 290px;
+    border: 1px solid var(--blue);
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+    line-height: 1.3;
+    color: var(--black);
+    margin-bottom: 50px;
+}
+
+
+.form__input {
+    width: 270px;
+    padding: 18px 20px;
+    display: inline-block;
+    margin-bottom: 50px;
+    border: 1px solid var(--blue);
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+    line-height: 1.3;
+    color: var(--black);
+}
+
+.form__input::placeholder, 
+.form__textarea::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+    line-height: 1.3;
+    color: var(--black);
+    opacity: 0.5;
+    
+}
+
+
+.form__btn {
+    border: none;
+    text-transform: uppercase;
+    background-color: var(--black);
+    color: var(--white);
+    padding: 13px 61px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+    line-height: 1.3;
+    margin: 0 auto;
+    /* margin:0 auto; ценрировало кнопку потому что всему блоку задан дисплей флек и кнопка является флекс элементом иначе это свойство не сработало  */
+}
+
+/* _________________Contats-us-end___________________ */
+
+
+
+
+
+
+/* _________________Blog-start___________________ */
+
+.blog {
+    padding-bottom: 150px;
+}
+
+.blog__items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-bottom: 70px;
+}
+
+.blog__item {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.blog__item-img {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.blog__item-title {
+    font-size: 24px;
+    font-weight: 700;
+    flex-basis: 446px;
+    /* CSS свойство flex-basis задаёт базовый размер флекс элемента по основной оси. Это свойство определяет размер контент-бокса, если не задано иначе через box-sizing. */
+}
+
+.blog__item-link {
+    color: var(--white);
+    background-color: var(--blue);
+    padding: 4px 20px;
+}
+
+.show__link {
+    text-align: center;
+    display:block;
+    width: 225px;
+    padding: 13px;
+    text-transform: uppercase;
+    background-color: var(--black);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+    line-height: 1.3;
+    margin: 0 auto;
+    /* margin:0 auto;  можно задавать только флексам и блочным элементам*/
+}
+/* _________________Blog-end___________________ */
+
+/* ________________New-cars-start______________ */
+
+.choose {
+    padding: 100px 0 150px;
+}
+
+.tabs {
+    margin-bottom: 70px;
+}
+
+.tabs__btn {
+    padding: 0 150px;
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+    padding-bottom: 100px;
+}
+
+.tabs__btn-item {
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+
+
+.tabs__btn-item--active {
+    color: var(--blue);
+}
+
+.tabs__content-item {
+    display: none;
+    grid-template-columns: repeat(4,1fr);
+    gap: 100px 40px;
+}
+
+
+.tabs__content-item.tabs__content-item--active {
+    display: grid;
+}
+
+.card {
+    text-align: center;
+}
+
+
+.card__content{
+    padding: 0 5px;
+    border: 1px solid var(--blue);
+    border-top: 0;
+}
+
+.card__img {
+    display: block;
+    /* картинка по умолчанию является строчным элементом 
+    в нашем примере кода мы сделали бордер, мы не моги остыковатся с картинкой потому что там там был микро отступ по умолчанию у строчных элементов есть отстум и его не найти в дев тулс после чего мы сделали картинкку блочным элементом ткм самым мы смогли состыкоовать картинку и блок с контентом без отступов  */
+}
+
+.card__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+
+.card__text {
+    margin-bottom: 20px;
+}
+
+.card__price {
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.card__link {  
+    display: block;
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    border-top: 0;
+}
+/* ________________New-cars-end______________ */
